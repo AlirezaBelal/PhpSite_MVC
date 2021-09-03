@@ -28,7 +28,7 @@ class RenderManagemen
         {
             $message = Message::getMessage();
             $type = Message::getType();
-            Message::clear();
+            Message::clearMessage();
         }
 
         ob_start();
