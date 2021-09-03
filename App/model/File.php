@@ -16,11 +16,11 @@ class File extends Model
     public string $name;
     public string $path;
     public string $user_upload;
-    public date $time_upload;
+    public string $time_upload;
     public int $count_download;
     public string $type_file;
     public int $size_file;
-    public date $time_expire;
+    public string $time_expire;
     public int $validation;
 
     protected $table_name = "file";
