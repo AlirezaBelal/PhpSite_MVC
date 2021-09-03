@@ -3,8 +3,10 @@
 namespace App\controller\traitsController;
 
 use App\middleware\Validation;
+
 use App\core\Auth;
 use App\core\Message;
+
 use App\model\User;
 
 
@@ -13,8 +15,7 @@ trait LoginTrait
 
     public function login($request) {
         $data = $request->getBody();
-
-        $checkValid = Validation::validate($data);
+        $checkValid = Validation::toBeRight($data);
 
         if ($checkValid) {
             $user = (new User())->login($data['username'], $data['password']);
