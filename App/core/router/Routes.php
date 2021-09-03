@@ -3,13 +3,14 @@
 namespace App\core\router;
 
 use App\core\Application;
+
 use App\controller\UserController;
 use App\controller\AdminController;
 use App\controller\HomeController;
 
 class Routes
 {
-
+    //Define web pages and requests
     public static function getRoutes()
     {
         $app = Application::get_instance();
