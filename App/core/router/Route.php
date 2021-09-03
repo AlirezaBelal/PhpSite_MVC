@@ -16,13 +16,14 @@ class Route
         $this->callback = $callback;
     }
 
-
+    //Set the path name to make the root dynamic
     public function namePath($name)
     {
         $this->name = $name;
         return $this;
     }
 
+    //check address
     public function check($path)
     {
         $pattern = preg_replace('/{\w+}/', '(\\w+)', $this->getPath());
