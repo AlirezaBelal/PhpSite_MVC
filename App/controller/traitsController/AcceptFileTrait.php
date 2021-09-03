@@ -3,11 +3,12 @@
 namespace App\controller\traitsController;
 
 use App\middleware\Validation;
+
 use App\core\Message;
-use App\model\Request;
-use App\model\File;
 use App\core\Auth;
 
+use App\model\Request;
+use App\model\File;
 
 
 //Confirm uploaded files request
@@ -18,15 +19,16 @@ trait AcceptFileTrait
     {
         $data = $request->getBody();
 
-        $checkValid = Validation::validate($data);
+        $checkValid = Validation::toBeRight($data);
 
-        //Check Loll Access to File Verifier
+        //Check level Access to File Verifier
         if (!Auth::isUserConfirm())
         {
             Message::addMessage("Access is blocked.");
             return $this->redirect("home", 303);
         }
 
+        //Confirm requests
         if ($checkValid) {
             $id = $data['id'];
 
