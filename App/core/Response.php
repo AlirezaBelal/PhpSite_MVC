@@ -4,7 +4,7 @@ namespace App\core;
 
 use App\php\URL;
 
-
+//Code management
 class Response 
 {
 
