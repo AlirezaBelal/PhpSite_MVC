@@ -7,8 +7,8 @@ use App\core\Message;
 
 class FileControl
 {
-    const DATA_LIMIT = 52428800 ; //50MB
-    const DATA_TYPES = ['MKV', 'MP4', 'MOV', 'GIF' , 'PNG' , 'JPEG'];
+    const DATA_LIMIT = 52428800 ; //52428800bit => 50MB
+    const DATA_TYPES = ['MKV', 'MP4', 'MOV', 'GIF' , 'PNG' , 'JPEG' , 'JPG']; //Manage authorized extensions
 
     public static function sizeCheck($data)
     {
