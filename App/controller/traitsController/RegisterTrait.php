@@ -14,8 +14,9 @@ trait RegisterTrait
     public function register($request) {
         $data = $request->getBody();
 
-        $checkValid = Validation::validate($data);
+        $checkValid = Validation::toBeRight($data);
 
+//        $checkUser = $data
         if ($checkValid) {
             $user = (new User())->register($data['username'], $data['password']);
             if ($user == -1) {
