@@ -2,6 +2,7 @@
 
 namespace App\controller;
 
+
 use App\core\Auth;
 use App\core\Message;
 
@@ -11,6 +12,7 @@ use App\model\Request;
 use App\controller\traitsController\AcceptFileTrait;
 use App\controller\traitsController\DeleteTrait;
 use App\controller\traitsController\BlockTrait;
+use App\controller\traitsController\UnBlockTrait;
 use App\controller\traitsController\ConfirmTrait;
 
 
@@ -21,6 +23,7 @@ class AdminController extends BaseController
     use AcceptFileTrait;
     use DeleteTrait;
     use BlockTrait;
+    use UnBlockTrait;
     use ConfirmTrait;
 
     public function requests() {
@@ -43,10 +46,8 @@ class AdminController extends BaseController
             $users = json_encode($users);
             return $this->render("users", ['users' => $users, 'Online_admin' => Auth::getUserName()]);
         } else {
-            Message::addMessage("Can't access this page.", Message::WARN);
+            Message::addMessage("Can't access this page.", Message::Wrong);
             return $this->redirect("home", 307);
         }
     }
 }
-
-?>
