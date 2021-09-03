@@ -3,8 +3,10 @@
 namespace App\controller\traitsController;
 
 use App\middleware\Validation;
+
 use App\core\Auth;
 use App\core\Message;
+
 use App\model\File;
 
 
@@ -15,7 +17,7 @@ trait DownloadTrait
     {
         $data = $request->getBody();
 
-        $checkValid = Validation::validate($data);
+        $checkValid = Validation::toBeRight($data);
 
         if ($checkValid) {
             $file = (new File())->selectFileById($data['id']);
@@ -23,7 +25,7 @@ trait DownloadTrait
                 $file->downloadFile($file->id, $file->count_download + 1);
                 $filePath = $file->path;
                 header('Content-Type: application/octet-stream');
-                header("Content-Transfer-Encoding: Binary"); 
+                header("Content-Transfer-Encoding: Binary");
                 header("Content-disposition: attachment; filename=\"" . basename($filePath) . "\"");
                 readfile($filePath);
                 return $this->redirect("home");
