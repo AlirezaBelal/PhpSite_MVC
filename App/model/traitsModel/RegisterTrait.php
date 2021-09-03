@@ -6,6 +6,8 @@ trait RegisterTrait
 {
     public function register($username, $password)
     {
+
+        $password = md5($password);//hash Password
         return $this->insert($this->table_name, [
             "name" => $username, 
             "password" => $password,
