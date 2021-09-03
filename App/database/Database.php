@@ -9,6 +9,7 @@ use App\controller\BaseController;
 class Database
 {
 
+    //Database configuration information
     const DB_HOST = "127.0.0.1";
     const DB_PORT = "";
     const DB_NAME = "AlirezaBelal";
