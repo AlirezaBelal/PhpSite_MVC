@@ -11,11 +11,11 @@ use App\core\view\RenderManagemen;
 
 class Router
 {
-    // Router tools
     public Request $request;
     public Response $response;
-    // Router routes
     protected $routes = [];
+
+    public static $title = '';
 
 
     public function __construct($request, $response)
@@ -60,7 +60,7 @@ class Router
         return false;
     }
 
-
+    //Manage web pages
     public function resolve()
     {
         $path = $this->request->getPath();
@@ -68,6 +68,8 @@ class Router
 
         $callback = $this->getCallBack($path, $method);
 
+
+        //Error management 404
         if ($callback === false) {
             $code = 404;
             $this->response->setStatusCode($code);
