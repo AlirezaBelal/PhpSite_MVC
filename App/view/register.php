@@ -2,7 +2,12 @@
 
 use App\Php\URL;
 
+use App\core\router\Router;
+
+Router::$title = 'Register';
 ?>
+
+
 <section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center">

@@ -1,3 +1,9 @@
+<?php
+use App\core\router\Router;
+
+Router::$title = 'Requests';
+?>
+
 <?php if (isset($requests) && isset(json_decode($requests)[0])) { ?>
     <table class="table">
         <thead class="thead-dark" align="center">

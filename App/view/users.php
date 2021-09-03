@@ -1,3 +1,10 @@
+<?php 
+
+use App\core\router\Router;
+
+Router::$title = 'User';
+?>
+
 <?php if (isset($users) && isset(json_decode($users)[0])) { ?>
 
     <table class="table">

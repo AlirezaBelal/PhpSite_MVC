@@ -1,6 +1,11 @@
 <!-- Link Css -->
 <link rel="stylesheet" href="./Css/UplodeFile.css">
 
+<?php 
+use App\core\router\Router;
+
+Router::$title = 'Upload'; ?>
+
 <section>
     <div class="container p-5">
         <div class="row mb-5 text-center text-white">

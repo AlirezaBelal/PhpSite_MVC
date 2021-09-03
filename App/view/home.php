@@ -1,3 +1,9 @@
+<?php
+use App\core\router\Router;
+Router::$title = 'Home';
+?>
+
+
 <?php if (isset($files) && isset(json_decode($files)[0])) { ?>
     <table class="table">
         <thead class="thead-dark" align="center">
