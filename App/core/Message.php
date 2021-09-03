@@ -25,7 +25,7 @@ class Message
     }
 
 
-    public static function clear()
+    public static function clearMessage()
     {
         Cookie::set("message", "", -3601);
         Cookie::set("type", "", -3601);
