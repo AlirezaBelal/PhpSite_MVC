@@ -4,7 +4,6 @@ namespace App\middleware;
 
 use App\core\Message;
 
-
 class Validation
 {
     const DATA_LIMIT = 64; //Charter inpout
@@ -21,7 +20,7 @@ class Validation
     }
 
 
-    public static function validate($data)
+    public static function toBeRight($data)
     {
         foreach($data as $key => $value) {
             if (self::dataValidation($value)) {
