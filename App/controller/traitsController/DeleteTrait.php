@@ -3,19 +3,20 @@
 namespace App\controller\traitsController;
 
 use App\middleware\Validation;
+
 use App\core\Message;
+use App\core\Auth;
+
 use App\model\Request;
 use App\model\File;
-use App\core\Auth;
 
 trait DeleteTrait
 {
-
     public function doDelete($request) 
     {
         $data = $request->getBody();
 
-        $checkValid = Validation::validate($data);
+        $checkValid = Validation::toBeRight($data);
 
         if (!Auth::checkUser())
         {
