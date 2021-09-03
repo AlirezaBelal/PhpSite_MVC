@@ -15,7 +15,7 @@ use App\model\File;
 
 class UserController extends BaseController
 {
-
+    //Trait Class
     use LoginTrait;
     use LogoutTrait;
     use RegisterTrait;
