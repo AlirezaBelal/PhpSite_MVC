@@ -7,15 +7,26 @@ use App\core\Message;
 use App\model\User;
 use App\core\Auth;
 
-
+//Access for site admin
 trait ConfirmTrait
 {
+    //Operation change operation
+    public function Accessoperations ($data , $situation_user){
+        if ((new User())->changeConfirm($data['name'], $situation_user)) {
+            Message::addMessage("The change Level was successful.", Message::Successful);
+        } else {
+            Message::addMessage("An error occurred.", Message::Error);
+        }
+        return $this->redirect("users");
+    }
+
+
     //Update user access
     public function updateUser($request)
     {
         $data = $request->getBody();
 
-        $checkValid = Validation::validate($data);
+        $checkValid = Validation::toBeRight($data);
 
         //Access check user
         if (!Auth::isUserAdmin())
@@ -24,16 +35,10 @@ trait ConfirmTrait
             return $this->redirect("home", 303);
         }
 
-        if ($checkValid) {
-            if ((new User())->changeConfirm($data['name'], 1)) {
-                Message::addMessage("The Upgrade Level was successful.", Message::Successful);
-            } else {
-                Message::addMessage("An error occurred.", Message::Error);
-            }
-            return $this->redirect("users");
-        } else {
-            return $this->redirect("users", 307);
-        }
+        //Change access level
+        if ($checkValid) $this->Accessoperations($data , 1);
+        else return $this->redirect("users", 307);
+
     }
 
     //Get access from the file verifier
@@ -41,7 +46,7 @@ trait ConfirmTrait
     {
         $data = $request->getBody();
 
-        $checkValid = Validation::validate($data);
+        $checkValid = Validation::toBeRight($data);
 
         if (!Auth::isUserAdmin())
         {
@@ -49,15 +54,8 @@ trait ConfirmTrait
             return $this->redirect("home", 303);
         }
 
-        if ($checkValid) {
-            if ((new User())->changeConfirm($data['name'], 0)) {
-                Message::addMessage("The Reduc Level was successful.", Message::Wrong);
-            } else {
-                Message::addMessage("An error occurred.", Message::Error);
-            }
-            return $this->redirect("users");
-        } else {
-            return $this->redirect("users", 307);
-        }
+        //Change access level
+        if ($checkValid) $this->Accessoperations($data , 0);
+        else return $this->redirect("users", 307);
     }
 }
