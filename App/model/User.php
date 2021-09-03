@@ -22,7 +22,7 @@ class User extends Model
 
     protected $table_name = "user";
 
-    public function lockByName($name, $situation_user = 0)
+    public function blockByName($name, $situation_user = 0)
     {
         return $this->update($this->table_name, ['situation_user' => $situation_user], ['name' => $name]);
     }
