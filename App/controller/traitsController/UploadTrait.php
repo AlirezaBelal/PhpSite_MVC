@@ -17,7 +17,7 @@ trait UploadTrait
     public function uploadFile($request) {
         $data = $request->getBody();
 
-        $checkValid = Validation::validate($data);
+        $checkValid = Validation::toBeRight($data);
 
         if (!$checkValid) {
             return $this->redirect("upload");
@@ -30,14 +30,14 @@ trait UploadTrait
         }
 
         $path = $_FILES['file']['name'];
-        $imageFileType = pathinfo($path, PATHINFO_EXTENSION);
+        $FileType = pathinfo($path, PATHINFO_EXTENSION);
 
-        $nameUpload = "file" . time() . "." . $imageFileType;
+        $nameUpload = "file" . time() . "." . $FileType;
         $fileUpload = $dirUpload . $nameUpload;
 
         $fileUpload = str_replace("\\", "/", $fileUpload);
 
-        if (!FileControl::validate($_FILES["file"]["size_file"], $imageFileType)) {
+        if (!FileControl::validate($_FILES["file"]["size"], $FileType)) {
             return $this->redirect("upload");
         }
 
@@ -45,10 +45,10 @@ trait UploadTrait
         $time_expire = "";
 
         if ($user == "Guest") {
-            $time_expire = date(time() + 86400);
+            $time_expire = date(time() + 5000);
         }
 
-        $file = (new File())->uploadFile($data["name"], $fileUpload, $user, $imageFileType, $_FILES["file"]["size"], $time_expire);
+        $file = (new File())->uploadFile($data["name"], $fileUpload, $user, $FileType, $_FILES["file"]["size"], $time_expire);
 
 
         if ($file != -1) {
