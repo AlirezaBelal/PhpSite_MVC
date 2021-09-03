@@ -28,7 +28,11 @@ abstract class Model
         $Query = $this->pdo->prepare("SELECT * FROM $table_name WHERE $Status");
         $Query->execute();
 
-        return $Query->fetchObject(get_called_class());
+        $test = $Query->fetchObject(get_called_class());
+
+        return $test;
+//        var_dump($test);
+//        exit();
     }
 
     public function selectAll($table_name)
@@ -118,7 +122,7 @@ abstract class Model
         $Query = $this->pdo->prepare("SELECT COUNT(*) FROM $table_name");
         try {
             $Query->execute();
-            return $sth->fetch();
+            return $Query->fetch();
         } catch (\PDOExecption $e) {
             return 0;
         }
